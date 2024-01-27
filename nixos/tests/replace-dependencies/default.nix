@@ -2,7 +2,10 @@ import ../make-test-python.nix ({ pkgs, ... }: {
   name = "replace-dependencies";
   meta.maintainers = with pkgs.lib.maintainers; [ alois31 ];
 
-  nodes.machine = { ... }: { system.extraDependencies = [ pkgs.stdenvNoCC ]; };
+  nodes.machine = { ... }: {
+    nix.settings.experimental-features = [ "ca-derivations" ];
+    system.extraDependencies = [ pkgs.stdenvNoCC ];
+  };
 
   testScript = ''
     start_all()
