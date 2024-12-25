@@ -141,7 +141,7 @@ in {
     systemd.services."cockpit-wsinstance-http" = {
       description = "Cockpit Web Service http instance";
       bindsTo = [ "cockpit.service" ];
-      path = [ cfg.package ];
+      path = [ cfg.package pkgs.bash ];
       documentation = [ "man:cockpit-ws(8)" ];
       serviceConfig = {
         ExecStart = "${cfg.package}/libexec/cockpit-ws --no-tls --port=0";
